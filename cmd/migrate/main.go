@@ -3,8 +3,10 @@ package main
 import (
 	"database/sql"
 	"fmt"
+
 	_ "github.com/WHGLD/antibruteforce/migrations"
 	_ "github.com/jackc/pgx/stdlib"
+
 	"github.com/pressly/goose"
 )
 
