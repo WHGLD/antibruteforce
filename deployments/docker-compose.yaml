@@ -20,15 +20,15 @@ services:
     ports:
       - "5432:5432"
 
-  #migrate:
-    #build:
-      #context: ../..
-      #ockerfile: Dockerfile
-    #command: sh -c "/wait && /app/migrate"
-    #environment:
-      #- WAIT_HOSTS=db:5432
-      #- WAIT_BEFORE_HOSTS=2
-      #- DB_USERNAME=abf
-      #- DB_PASSWORD=admin
-      #- DB_HOST=db
-    #depends_on: [db]
+  migrate:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    command: sh -c "/wait && /app/migrate"
+    environment:
+      - WAIT_HOSTS=db:5432
+      - WAIT_BEFORE_HOSTS=2
+      - DB_USERNAME=abf
+      - DB_PASSWORD=admin
+      - DB_HOST=db
+    depends_on: [db]

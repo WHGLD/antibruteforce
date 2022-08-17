@@ -39,7 +39,7 @@ func main() {
 	}
 	defer db.Close()
 
-	if err := goose.Run("up", db, "./migrations/"); err != nil {
+	if err := goose.Run("up", db, "./"); err != nil {
 		fmt.Println(err)
 		return
 	}
