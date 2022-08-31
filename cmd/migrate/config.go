@@ -4,7 +4,6 @@ import (
 	"github.com/caarlos0/env/v6"
 )
 
-// Config confuguration struct.
 type Config struct {
 	DB struct {
 		Username  string `env:"DB_USERNAME" envDefault:"admin"`
@@ -16,7 +15,6 @@ type Config struct {
 	}
 }
 
-// NewConfig returns configuration.
 func NewConfig() (*Config, error) {
 	cfg := Config{}
 	err := env.Parse(&cfg)

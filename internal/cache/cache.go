@@ -13,6 +13,15 @@ type RedisCache struct {
 	client *redis.Client
 }
 
+func (c *RedisCache) Increment(ctx context.Context, key string, t time.Duration) error {
+	err := c.client.Incr(ctx, key).Err()
+	if err != nil {
+		return err
+	}
+
+	return c.client.Expire(ctx, key, t).Err()
+}
+
 func (c *RedisCache) Get(ctx context.Context, key string) (int, error) {
 	val, err := c.client.Get(ctx, key).Result()
 	switch {
