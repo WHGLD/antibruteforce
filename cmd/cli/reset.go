@@ -26,8 +26,6 @@ func Reset(cmd *cobra.Command, args []string) {
 	pw := args[1]
 	ip := args[2]
 
-	// todo проверка ip и mask
-
 	client, err := getGRPCClient()
 	if err != nil {
 		fmt.Println("Connection refused")

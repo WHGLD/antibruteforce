@@ -25,8 +25,6 @@ func removeFromBlackList(cmd *cobra.Command, args []string) {
 	ip := args[0]
 	mask := args[1]
 
-	// todo проверка ip и mask
-
 	client, err := getGRPCClient()
 	if err != nil {
 		fmt.Println("Connection refused")
