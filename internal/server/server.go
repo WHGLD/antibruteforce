@@ -37,7 +37,7 @@ func (s *Server) Start(ctx context.Context) error {
 	return err
 }
 
-func (s *Server) Stop(ctx context.Context) error { // todo если timeout работает убрать от сюда ctx
+func (s *Server) Stop(ctx context.Context) error {
 	s.grpcServer.Stop()
 	return nil
 }
@@ -47,8 +47,6 @@ func (s *Server) Auth(ctx context.Context, req *AuthRequest) (*AuthResponse, err
 	if err != nil {
 		return nil, err
 	}
-
-	// todo check return
 
 	return &AuthResponse{Ok: ok}, nil
 }
