@@ -32,3 +32,22 @@ services:
       - DB_PASSWORD=admin
       - DB_HOST=db
     depends_on: [db]
+
+  abf:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    command: sh -c "/wait && /app/ab_force"
+    environment:
+      - WAIT_HOSTS=db:5432,redis:6379
+      - WAIT_BEFORE_HOSTS=5
+      - DB_USERNAME=abf
+      - DB_PASSWORD=admin
+      - DB_HOST=db
+      - DB_NAME=abf
+      - GRPC_HOST=0.0.0.0
+      - REDIS_PASSWORD=redis_pw
+      - REDIS_HOST=redis
+    depends_on: [ db, redis ]
+    ports:
+      - "50051:50051"
