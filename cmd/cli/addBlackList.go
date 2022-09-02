@@ -33,13 +33,12 @@ func AddToBlackList(cmd *cobra.Command, args []string) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 
 	request := &server.AddNetMaskRequest{Ip: ip, Mask: mask}
-	response := &server.AddNetMaskResponse{}
-	response, err = client.AddToBlackList(ctx, request)
+	response, errAdd := client.AddToBlackList(ctx, request)
 
 	cancel()
 
-	if err != nil {
-		fmt.Printf("error while adding net mask [ip: %s mask: %s]: %s\n", ip, mask, err.Error())
+	if errAdd != nil {
+		fmt.Printf("error while adding net mask [ip: %s mask: %s]: %s\n", ip, mask, errAdd.Error())
 		os.Exit(13)
 	}
 	fmt.Printf("net mask [ip: %s mask: %s] successfully added\n", response.GetIp(), response.GetMask())

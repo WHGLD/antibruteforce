@@ -33,18 +33,17 @@ func Auth(cmd *cobra.Command, args []string) {
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 
-	response := &server.AuthResponse{Ok: false}
-	response, err = client.Auth(ctx, &server.AuthRequest{Login: login, Password: pw, Ip: ip})
+	response, errAuth := client.Auth(ctx, &server.AuthRequest{Login: login, Password: pw, Ip: ip})
 
 	cancel()
 
-	if err != nil {
+	if errAuth != nil {
 		fmt.Printf(
 			"error while auth [login: %s password: %s ip: %s]: %s\n",
 			login,
 			pw,
 			ip,
-			err.Error(),
+			errAuth.Error(),
 		)
 		os.Exit(13)
 	}
